@@ -16,7 +16,10 @@ export default defineConfig({
         secure: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
         headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+          "Origin": "https://www.swiggy.com",
+          "Referer": "https://www.swiggy.com/",
+          "__fetch_req__": "true"
         }
       },
     },
