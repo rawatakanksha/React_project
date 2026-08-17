@@ -3,10 +3,13 @@ import Shimmer from "./ShimmerUI";
 import { NavLink } from "react-router-dom";
 import { CDN_URL } from "../utils/constants";
 import RestaurantMenueCard from "./RestaurantMenueCard";
+import { MENUE_URL } from "../utils/constants";
+import { useParams } from "react-router-dom";
 
 
 function RestaurantMenue() {
   const [resInfo, setResInfo] = useState(null);
+  const {resId}=useParams()
 
   useEffect(() => {
     fetchData();
@@ -15,7 +18,7 @@ function RestaurantMenue() {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "/api/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0035068&lng=77.5890953&restaurantId=560792&submitAction=ENTER",
+       `${MENUE_URL+resId}` 
       );
       const json = await data.json();
       console.log("Swiggy Menu JSON:", json);
@@ -36,6 +39,7 @@ function RestaurantMenue() {
     totalRatingsString,
     costForTwoMessage,
     cuisines,
+    id
   } = resInfo?.data?.cards[2]?.card?.card?.info;
   const { cards } =
     resInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR || {};
@@ -63,7 +67,7 @@ function RestaurantMenue() {
 
        <div>
           {cards.map((cards) => {
-            return <RestaurantMenueCard  cards={cards} />;
+            return <RestaurantMenueCard key={id} cards={cards} />;
           })}
           </div>
         

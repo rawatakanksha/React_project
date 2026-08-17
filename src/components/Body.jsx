@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ResCard from "./ResCard";
 import Shimmer from "./ShimmerUI";
+import { NavLink } from "react-router-dom";
 
 function Body() {
   const [listRes, setListRes] = useState([]);
@@ -141,7 +142,7 @@ function Body() {
       </div>
       <div className="flex flex-wrap items-stretch ">
         {searchList.map((res, idx) => {
-          return <ResCard key={`${res?.info?.id}-${idx}`} resList={res} />;
+          return <NavLink key={`${res?.info?.id}-${idx}`} to={"/restaurant-menue/"+res?.info?.id}> <ResCard key={`${res?.info?.id}-${idx}`} resList={res} /></NavLink>;
         })}
       </div>
       {isFetchingMore && (
